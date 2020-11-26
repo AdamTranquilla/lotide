@@ -1,9 +1,10 @@
 // FUNCTION IMPLEMENTATION
 const assertEqual = function (actual, expected) {
-  if (actual === expected) {
-    console.log(`✅✅✅Assertion Passed: ${actual} === ${expected}`);
-  } else if (actual !== expected) {
-    console.log(`🛑🛑🛑Assertion Failed: ${actual} !== ${expected}`);
+  const fixObj = require('util').inspect; // takes the parameter and turns it into a object again
+  if (eqArrays(actual, expected)) {
+    console.log(`✅✅✅ Assertion Passed: ${fixObj(actual)} === ${fixObj(expected)}`);
+  } else {
+    console.log(`🛑🛑🛑 Assertion Failed: ${fixObj(actual)} !== ${fixObj(expected)}`);
   }
 };
 
@@ -21,7 +22,7 @@ const eqArrays = (a, b) => {
 }
 
 // TEST CODE
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true) // => true
-assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false) // => false
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true) // => true
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false) // => false
+assertEqual([1, 2, 3], [1, 2, 3]); // => true
+assertEqual([1, 2, 3], [3, 2, 1]); // => false
+assertEqual(["1", "2", "3"], ["1", "2", "3"]); // => true
+assertEqual(["1", "2", "3"], ["1", "2", 3]); // => false
