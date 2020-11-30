@@ -22,30 +22,40 @@ const companySalesData = [
   }
 ];
 
-const calculateSalesTax = (salesData, taxRates) => {
-
-  for (const key in salesData) {
-    salesData[key].totalSales = 0;
-    salesData[key].totalTaxes = 0;
-    for (let i = 0; i < salesData[key].sales.length; i++) {
-      salesData[key].totalSales += salesData[key].sales[i];
-    }
-    salesData[key].totalTaxes = salesData[key].totalSales * salesTaxRates[salesData[key].province]
-  }
-
+const calculateSales = (salesData, taxRates) => {
   const mergerSalesData = {}
-  for (const company in salesData) {
-    if (mergerSalesData[companySalesData[company].name]) {
-      mergerSalesData[companySalesData[company].name] += salesData[company].totalSales;
-      mergerSalesData[companySalesData[company].name] += salesData[company].totalTaxes;
-    } else {
-      mergerSalesData[companySalesData[company].name] = salesData[company].totalSales;
-      mergerSalesData[companySalesData[company].name] = salesData[company].totalTaxes;
-    }
-    console.log(mergerSalesData)
+  for (const branch of salesData) {
+    branch.totalSales = branch.sales.reduce((a, b) => a + b, 0)
+        if (!mergerSalesData[branch.name]) {
+          mergerSalesData[branch.name] = {}
+          mergerSalesData[branch.name].totalSales = 0
+          mergerSalesData[branch.name].totalTaxes = 0
+        }
+    mergerSalesData[branch.name].totalSales += branch.totalSales
+    mergerSalesData[branch.name].totalTaxes += taxRates[branch.province] * branch.totalSales
   }
-
- // console.log(mergerSalesData)
+  return mergerSalesData
 };
 
-console.log(calculateSalesTax(companySalesData, salesTaxRates))
+/* 
+const calculateSales = (salesData, taxRates) => {
+  const mergerSalesData = {}
+  for (const branch of salesData) {
+    let companyName = branch.name
+    let sumSales = branch.sales.reduce((a, b) => a + b, 0)
+    branch.totalSales = sumSales
+    let provinceName = branch.province
+    let provinceTaxRate = salesTaxRates[provinceName]
+    let totalTaxes = provinceTaxRate * branch.totalSales
+        if (!mergerSalesData[companyName]) {
+          mergerSalesData[companyName] = {}
+          mergerSalesData[companyName].totalSales = 0
+          mergerSalesData[companyName].totalTaxes = 0
+        }
+    mergerSalesData[companyName].totalSales += branch.totalSales
+    mergerSalesData[companyName].totalTaxes += totalTaxes
+  }
+  return mergerSalesData
+}; */
+
+console.log(calculateSales(companySalesData, salesTaxRates))
