@@ -1,7 +1,7 @@
 {
-  "name": "lotide",
+  "name": "@adamtranquilla/lotide",
   "version": "1.0.0",
-  "description": "",
+  "description": "Collection of useful functions",
   "main": "assertArraysEqual.js",
   "directories": {
     "test": "test"
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/AdamTranquilla/lotide.git"
   },
-  "author": "",
+  "author": "adamtranquilla",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AdamTranquilla/lotide/issues"
