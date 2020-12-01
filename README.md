@@ -26,9 +26,6 @@ This project was created and published by me as part of my learnings at Lighthou
 
 The following functions are currently implemented:
 
-* `function1(...)`: description
-* `function2(...)`: description
-* `function3(...)`: description
 * `head(...)`: returns first item in array
 * `tail(...)`: returns every item after the first in an array
 * `middle(...)`: returns the middle item(s) of an array

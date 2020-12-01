@@ -1,31 +1,19 @@
 const countOnly = (allItems, itemsToCount) => {
-  const results = {}
+  const results = {};
   for (const key in itemsToCount) {
     if (itemsToCount[key]) {
       for (const name of allItems) {
-        if(name === key){
-          if(results[key]){          
-            results[key] += 1
+        if (name === key) {
+          if (results[key]) {
+            results[key] += 1;
           } else {
-            results[key] = 1
+            results[key] = 1;
           }
         }
       }
     }
   }
   return results;
-}
-
-/* const firstNames = [
-  "Karl",
-  "Salima",
-  "Agouhanna",
-  "Fang",
-  "Kavith",
-  "Jason",
-  "Salima",
-  "Fang",
-  "Joe"
-]; */
+};
 
 module.exports = countOnly;
