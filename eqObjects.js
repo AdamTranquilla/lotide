@@ -1,12 +1,12 @@
-const eqObjects = (object1, object2) => {
-  if (typeof object1 != typeof object2 || Object(obj1) !== obj1) return false;
-  if (Object.keys(object1).length !== Object.keys(object2).length) {
+const eqObjects = (obj1, obj2) => {
+  if (typeof obj1 != typeof obj2 || Object(obj1) !== obj1) return false;
+  if (Object.keys(obj1).length !== Object.keys(obj2).length) {
     return false;
   } else {
-    for (const key in object1) {
-      if (!object2.hasOwnProperty(key)) return false;
-      if (typeof object1[key] === 'object' && !(object1[key] instanceof Array)) {
-        if (!eqObjects(object1[key], object2[key])) return false;
+    for (const key in obj1) {
+      if (!obj2.hasOwnProperty(key)) return false;
+      if (typeof obj1[key] === 'object' && !(obj1[key] instanceof Array)) {
+        if (!eqObjects(obj1[key], obj2[key])) return false;
       }
     }
   }
